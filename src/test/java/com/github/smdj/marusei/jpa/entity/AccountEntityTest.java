@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AccountEntityTest {
     private static final Logger log = LoggerFactory.getLogger(AccountEntityTest.class);
@@ -30,5 +31,11 @@ public class AccountEntityTest {
                 .isNotNull()
                 .extracting(AccountEntity::getId, AccountEntity::getEmail, AccountEntity::getNickname, AccountEntity::getCreatedAt, AccountEntity::getUpdatedAt)
                 .containsSequence(0, email, nickname, createdAt, createdAt);
+    }
+
+    @Test
+    public void test_new_with_nulls() {
+        assertThatThrownBy(() -> new AccountEntity(null, null, null))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

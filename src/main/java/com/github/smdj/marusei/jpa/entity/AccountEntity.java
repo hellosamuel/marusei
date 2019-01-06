@@ -29,6 +29,18 @@ public class AccountEntity implements Account {
 
 
     public AccountEntity(String email, String nickname, Instant createdAt) {
+        if (email == null) {
+            throw new IllegalArgumentException("email is null");
+        }
+
+        if (nickname == null) {
+            throw new IllegalArgumentException("nickname is null");
+        }
+
+        if (createdAt == null) {
+            throw new IllegalArgumentException("createAt is null");
+        }
+
         this.email = email;
         this.nickname = nickname;
         this.createdAt = createdAt;
