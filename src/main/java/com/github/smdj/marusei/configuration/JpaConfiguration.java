@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "com.github.smdj.marusei.jpa.repository")
 public class JpaConfiguration {
     @Bean
     public DataSource dataSource() {
@@ -25,7 +25,7 @@ public class JpaConfiguration {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
         hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
 
@@ -40,7 +40,7 @@ public class JpaConfiguration {
 
     @Bean
     public PlatformTransactionManager platformTransactionManager() {
-        return new JpaTransactionManager(localContainerEntityManagerFactoryBean().getObject());
+        return new JpaTransactionManager(entityManagerFactory().getObject());
     }
 
     @Bean

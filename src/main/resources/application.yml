@@ -7,9 +7,9 @@ spring:
       driver-class-name: com.mysql.cj.jdbc.Driver
       idle-timeout: 12000
       connection-test-query: SELECT 1
-    jpa:
-      database: mysql
-      open-in-view: false
+  jpa:
+    database: mysql
+    open-in-view: false
 logging:
   level:
     root: warn

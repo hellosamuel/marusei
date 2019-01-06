@@ -27,6 +27,8 @@ public class AccountEntity implements Account {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
+    public AccountEntity() {
+    }
 
     public AccountEntity(String email, String nickname, Instant createdAt) {
         if (email == null) {
