@@ -11,5 +11,5 @@ public interface Account {
 
     Instant getCreatedAt();
 
-    Instant getUpdataedAt();
+    Instant getUpdatedAt();
 }
