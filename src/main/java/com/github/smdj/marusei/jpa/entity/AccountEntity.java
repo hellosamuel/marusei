@@ -7,8 +7,8 @@ import java.time.Instant;
 import java.util.StringJoiner;
 
 @Entity(name = "Account")
-@Table(name = "account", uniqueConstraints = {@UniqueConstraint(name = "UQ_ACCOUNT_EMAIL", columnNames = "email"),
-        @UniqueConstraint(name = "UQ_ACCOUNT_NICKNAME", columnNames = "nickname")})
+@Table(name = "account", uniqueConstraints = {@UniqueConstraint(name = "UQ_ACCOUNT_EMAIL", columnNames = {"email"}),
+        @UniqueConstraint(name = "UQ_ACCOUNT_NICKNAME", columnNames = {"nickname"})})
 public class AccountEntity implements Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,7 @@ public class AccountEntity implements Account {
 
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
 
     public AccountEntity() {
     }
