@@ -37,7 +37,6 @@ public class AccountServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        log.debug("log");
         assertThat(accountService)
                 .isNotNull();
 
@@ -48,18 +47,18 @@ public class AccountServiceTest {
     @Test
     public void test_create() {
         // given
-        String email = "aaa@aa.a";
+        String email = "aaa@aaa.com";
         String nickname = "aaa";
-        String password = "1234";
+        String password = "12345678";
 
         CreateAccountParams createAccountParams = new CreateAccountParams(email, nickname, password);
-        log.debug("createAccountParams : {}", createAccountParams);
+        log.debug("createAccountParams = {}", createAccountParams);
 
         Instant before = Instant.now();
 
         // when
         Account account = accountService.create(createAccountParams);
-        log.debug("account : {}", account);
+        log.debug("account = {}", account);
 
         // then
         assertThat(account)
