@@ -1,11 +1,12 @@
 spring:
   thymeleaf:
     cache: false
-  hikari:
-    jdbc-url: jdbc:mysql://localhost/marusei?connectionCollation=utf8mb4_bin
-    username: homestead
-    password: 'random password'
-    maximum-pool-size: 1
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost/marusei?connectionCollation=utf8mb4_bin
+      username: homestead
+      password: 'random password'
+      maximum-pool-size: 1
 logging:
   level:
     com.github.smdj.marusei: debug
