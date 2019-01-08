@@ -27,18 +27,18 @@ class AccountServiceImpl implements AccountService {
     @Override
     public Account create(CreateAccountParams createAccountParams) {
         if (log.isTraceEnabled()) {
-            log.trace("createAccountParams : {}", createAccountParams);
+            log.trace("createAccountParams = {}", createAccountParams);
         }
 
         Instant time = Instant.now();
         Account account = new AccountEntity(createAccountParams.getEmail(), createAccountParams.getNickname(), time);
         account = accountRepository.saveAndFlush((AccountEntity) account);
 
-        Credential credential = new CredentialEntity(account, account.getEmail(), createAccountParams.getPassword(), time);
-        credentialRepository.saveAndFlush((CredentialEntity) credential);
+        Credential credentialEmail = new CredentialEntity(account, account.getEmail(), createAccountParams.getPassword(), time);
+        credentialRepository.saveAndFlush((CredentialEntity) credentialEmail);
 
-        Credential credential1 = new CredentialEntity(account, account.getNickname(), createAccountParams.getPassword(), time);
-        credentialRepository.saveAndFlush((CredentialEntity) credential);
+        Credential credentialNickname = new CredentialEntity(account, account.getNickname(), createAccountParams.getPassword(), time);
+        credentialRepository.saveAndFlush((CredentialEntity) credentialNickname);
 
         return account;
     }
