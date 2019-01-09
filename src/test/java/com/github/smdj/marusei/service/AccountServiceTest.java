@@ -26,6 +26,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Launcher.class)
 @Transactional
+// @Rollback(false) DB 정상입력 확인용
 public class AccountServiceTest {
     private static final Logger log = LoggerFactory.getLogger(AccountServiceTest.class);
 
