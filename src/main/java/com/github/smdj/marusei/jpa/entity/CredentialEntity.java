@@ -6,6 +6,7 @@ import com.github.smdj.marusei.domain.Credential;
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Entity(name = "Credential")
 @Table(name = "credential",
@@ -42,27 +43,6 @@ public class CredentialEntity implements Credential {
         if (secretHash == null) {
             throw new IllegalArgumentException("secretHash is null");
         }
-        this.account = account;
-        this.publicKey = publicKey;
-        this.secretHash = secretHash;
-        this.createdAt = createdAt;
-        this.updatedAt = createdAt;
-    }
-
-    public CredentialEntity(Account account, String publicKey, String secretHash, Instant createdAt) {
-        if (account == null) {
-            throw new IllegalArgumentException("account is null");
-        }
-        if (publicKey == null) {
-            throw new IllegalArgumentException("publicKey is null");
-        }
-        if (secretHash == null) {
-            throw new IllegalArgumentException("secretHash is null");
-        }
-        if (createdAt == null) {
-            throw new IllegalArgumentException("createdAt is null");
-        }
-
         this.account = account;
         this.publicKey = publicKey;
         this.secretHash = secretHash;
@@ -112,5 +92,17 @@ public class CredentialEntity implements Credential {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", CredentialEntity.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("account=" + account)
+                .add("publicKey='" + publicKey + "'")
+                .add("secretHash='" + secretHash + "'")
+                .add("createdAt=" + createdAt)
+                .add("updatedAt=" + updatedAt)
+                .toString();
     }
 }
