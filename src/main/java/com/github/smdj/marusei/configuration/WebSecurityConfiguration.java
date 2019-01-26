@@ -38,7 +38,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http.authorizeRequests()
-                .antMatchers("/", "/signup")
-                .anonymous();
+                .antMatchers("/signup").anonymous()
+                .antMatchers("/").permitAll();
     }
 }
