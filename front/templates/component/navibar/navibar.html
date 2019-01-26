@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>navibar</title>
+</head>
+<body>
+
+<header th:fragment="delegator">
+    <div sec:authorize="hasRole('ROLE_USER')">User</div>
+    <div sec:authorize="hasRole('ROLE_ANONYMOUS')">GUEST</div>
+</header>
+
+</body>
+</html>
