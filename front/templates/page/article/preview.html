@@ -6,14 +6,16 @@
 </head>
 <body>
 <main>
-    <form id="create-article">
+    <!--/*@thymesVar id="createArticlRequest" type="com.github.smdj.marusei.controller.request.CreateArticleRequest"*/-->
+    <form id="create-article" th:object="${createArticleRequest}">
         <label for="title">Title</label>
-        <input id="title" name="title" readonly="readonly" value="This is Article Preview Page"/>
+        <input id="title" name="title" readonly="readonly" value="This is Article Preview Page" th:field="*{title}"/>
         <label for="body">Body</label>
-        <textarea id="body" name="body" rows="20" cols="50" readonly="readonly">This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview</textarea>
+        <textarea id="body" name="body" rows="20" cols="50" readonly="readonly" th:field="*{body}">This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview</textarea>
     </form>
 </main>
 <button form="create-article" formaction="detail.html" formmethod="post" th:formaction="@{/articles}">confirm</button>
-<button form="create-article" formaction="create.html" formmethod="get" th:formaction="@{/articles/create}">edit</button>
+<button form="create-article" formaction="create.html" formmethod="get" th:formaction="@{/articles/create}">edit
+</button>
 </body>
 </html>

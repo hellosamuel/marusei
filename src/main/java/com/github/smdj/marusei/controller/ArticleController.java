@@ -1,8 +1,13 @@
 package com.github.smdj.marusei.controller;
 
 
+import com.github.smdj.marusei.controller.request.CreateArticleRequest;
 import com.github.smdj.marusei.security.AccountDetails;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RequestMapping("/articles")
 public interface ArticleController {
@@ -11,7 +16,7 @@ public interface ArticleController {
     String createForm();
 
     @PostMapping("/preview")
-    String preview(AccountDetails accountDetails);
+    String preview(AccountDetails accountDetails, @ModelAttribute @Valid CreateArticleRequest request, BindingResult result, Model model);
 
     @PostMapping()
     String create();

@@ -1,9 +1,15 @@
 package com.github.smdj.marusei.controller;
 
+import com.github.smdj.marusei.controller.request.CreateArticleRequest;
 import com.github.smdj.marusei.security.AccountDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -21,10 +27,16 @@ class ArticleControllerImpl implements ArticleController {
     }
 
     @Override
-    public String preview(AccountDetails accountDetails) {
+    public String preview(AccountDetails accountDetails, @ModelAttribute @Valid CreateArticleRequest request, BindingResult result, Model model) {
         if (log.isTraceEnabled()) {
-            log.trace("accountDetails = {} ", accountDetails);
+            log.trace("accountDetails={}, request={}, result={}, model={}", accountDetails, request, result, model);
         }
+
+        if (result.hasErrors()) {
+            return "page/article/create";
+        }
+
+        model.addAttribute("createArticleRequest", request);
 
         return "page/article/preview";
     }
