@@ -8,11 +8,28 @@
 <main>
     <article>
         <h1>글 작성 페이지</h1>
-        <form id="create-article" action="preview.html" method="post" th:action="@{/articles/preview}">
-            <label for="title">Title</label>
-            <input id="title" name="title" />
-            <label for="body">Body</label>
-            <textarea id="body" name="body" rows="20" cols="50"></textarea>
+        <!--/*@thymesVar id="createArticleRequest" type="com.github.smdj.marusei.controller.request.CreateArticleRequest"*/-->
+        <form id="create-article" action="details.html" method="post" th:action="@{/articles}"
+              th:object="${createArticleRequest}">
+            <ul th:if="${#fields.hasErrors()}">
+                <li th:each="err : ${#fields.errors()}" th:text="${err}">
+                    아래의 에러를 확인해 주세요!
+                </li>
+            </ul>
+            <div>
+                <label for="title">Title</label>
+                <input id="title" name="title" th:field="*{title}"/>
+                <ul th:if="${#fields.hasErrors('title')}">
+                    <li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+                </ul>
+            </div>
+            <div>
+                <label for="body">Body</label>
+                <textarea id="body" name="body" rows="20" cols="50" th:field="*{body}"></textarea>
+                <ul th:if="${#fields.hasErrors('body')}">
+                    <li th:each="err : ${#fields.errors('body')}" th:text="${err}"></li>
+                </ul>
+            </div>
         </form>
         <button form="create-article">submit</button>
         <button type="reset" form="create-article">reset</button>

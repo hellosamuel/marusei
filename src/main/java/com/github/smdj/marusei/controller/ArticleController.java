@@ -13,9 +13,10 @@ import javax.validation.Valid;
 public interface ArticleController {
     @GetMapping("/create")
 //    @PreAuthorize("hasRole('ROLE_USER')")
-    String createForm();
+    String createForm(Model model, AccountDetails accountDetails);
 
     @PostMapping("/preview")
+    @Deprecated(forRemoval = true)
     String preview(AccountDetails accountDetails, @ModelAttribute @Valid CreateArticleRequest request, BindingResult result, Model model);
 
     @PostMapping()

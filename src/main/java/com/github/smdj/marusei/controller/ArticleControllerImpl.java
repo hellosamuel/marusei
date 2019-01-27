@@ -18,10 +18,12 @@ class ArticleControllerImpl implements ArticleController {
     public static final Logger log = LoggerFactory.getLogger(ArticleControllerImpl.class);
 
     @Override
-    public String createForm() {
+    public String createForm(Model model, AccountDetails accountDetails) {
         if (log.isTraceEnabled()) {
-            log.trace("{} is called!", "createForm");
+            log.trace("model={}, accountDetails={}", model, accountDetails);
         }
+
+        model.addAttribute("createArticleRequest", new CreateArticleRequest());
 
         return "page/article/create";
     }
@@ -32,13 +34,7 @@ class ArticleControllerImpl implements ArticleController {
             log.trace("accountDetails={}, request={}, result={}, model={}", accountDetails, request, result, model);
         }
 
-        if (result.hasErrors()) {
-            return "page/article/create";
-        }
-
-        model.addAttribute("createArticleRequest", request);
-
-        return "page/article/preview";
+        throw new UnsupportedOperationException("삭제 예정");
     }
 
     @Override
@@ -49,6 +45,7 @@ class ArticleControllerImpl implements ArticleController {
 
         if (result.hasErrors()) {
             // TODO validate 에러가 있으시 처리 방법 정리
+            return "page/article/create";
         }
 
 
