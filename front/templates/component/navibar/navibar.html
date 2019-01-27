@@ -5,11 +5,19 @@
     <title>navibar</title>
 </head>
 <body>
-
 <header th:fragment="delegator">
-    <div sec:authorize="hasRole('ROLE_USER')">User</div>
-    <div sec:authorize="hasRole('ROLE_ANONYMOUS')">GUEST</div>
+    <div style="display: none" th:remove="tag">
+        <div sec:authorize="hasRole('ROLE_USER')" th:replace="component/navibar/user :: navibar">User</div>
+        <div sec:authorize="hasRole('ROLE_ANONYMOUS')" th:replace="component/navibar/guest :: navibar">Guest</div>
+    </div>
 </header>
 
+<h2>Guest</h2>
+<iframe src="guest.html"></iframe>
+<a href="guest.html">Guest 바로가기</a>
+
+<h2>User</h2>
+<iframe src="user.html"></iframe>
+<a href="user.html">User 바로가기</a>
 </body>
 </html>
