@@ -7,7 +7,10 @@
 <body>
 <header>
     <div th:fragment="navibar">
-        User Navibar
+        <div>
+            <form id="form-logout" action="../../page/index-guest.html" method="post" th:action="logout"></form>
+            <button form="form-logout">로그아웃</button>
+        </div>
     </div>
 </header>
 <a href="navibar.html">Navibar 전체보기</a>

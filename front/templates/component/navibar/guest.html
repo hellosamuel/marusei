@@ -7,7 +7,10 @@
 <body>
 <header>
     <div th:fragment="navibar">
-        Guest Navibar
+        <ul>
+            <li><a href="../../page/login.html" th:href="@{/login}">로그인</a></li>
+            <li><a href="../../page/signup.html" th:href="@{/signup}">회원가입</a></li>
+        </ul>
     </div>
 </header>
 <a href="navibar.html">Navibar 전체보기</a>
