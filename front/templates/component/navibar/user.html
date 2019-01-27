@@ -7,8 +7,11 @@
 <body>
 <header>
     <div th:fragment="navibar">
+        <p>
+            <span th:text="${#authentication.principal.nickname}">닉네임</span>님
+        </p>
         <div>
-            <form id="form-logout" action="../../page/index-guest.html" method="post" th:action="logout"></form>
+            <form id="form-logout" action="../../page/index-guest.html" method="post" th:action="@{/logout}"></form>
             <button form="form-logout">로그아웃</button>
         </div>
     </div>
