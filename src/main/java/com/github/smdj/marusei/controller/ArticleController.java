@@ -1,15 +1,17 @@
 package com.github.smdj.marusei.controller;
 
 
+import com.github.smdj.marusei.security.AccountDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/articles")
 public interface ArticleController {
     @GetMapping("/create")
+//    @PreAuthorize("hasRole('ROLE_USER')")
     String createForm();
 
     @PostMapping("/preview")
-    String preview();
+    String preview(AccountDetails accountDetails);
 
     @PostMapping()
     String create();

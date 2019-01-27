@@ -1,5 +1,6 @@
 package com.github.smdj.marusei.controller;
 
+import com.github.smdj.marusei.security.AccountDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,9 @@ class ArticleControllerImpl implements ArticleController {
     }
 
     @Override
-    public String preview() {
+    public String preview(AccountDetails accountDetails) {
         if (log.isTraceEnabled()) {
-            log.trace("{} is called!", "preview");
+            log.trace("accountDetails = {} ", accountDetails);
         }
 
         return "page/article/preview";
