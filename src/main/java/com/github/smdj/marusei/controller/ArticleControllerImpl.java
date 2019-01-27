@@ -42,10 +42,15 @@ class ArticleControllerImpl implements ArticleController {
     }
 
     @Override
-    public String create() {
+    public String create(AccountDetails accountDetails, @ModelAttribute @Valid CreateArticleRequest request, BindingResult result, Model model) {
         if (log.isTraceEnabled()) {
-            log.trace("{} is called!", "create");
+            log.trace("accountDetails={}, request={}, result={}, model={}", accountDetails, request, result, model);
         }
+
+        if (result.hasErrors()) {
+            // TODO validate 에러가 있으시 처리 방법 정리
+        }
+
 
         return "page/article/detail";
     }

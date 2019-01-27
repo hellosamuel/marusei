@@ -19,7 +19,7 @@ public interface ArticleController {
     String preview(AccountDetails accountDetails, @ModelAttribute @Valid CreateArticleRequest request, BindingResult result, Model model);
 
     @PostMapping()
-    String create();
+    String create(AccountDetails accountDetails, @ModelAttribute @Valid CreateArticleRequest request, BindingResult result, Model model);
 
     @GetMapping("/{id:\\d+}")
     String detail(@PathVariable("id") long id);
